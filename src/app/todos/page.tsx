@@ -2,15 +2,14 @@ import prisma from '@/libs/db'
 import { addTodo } from '@/libs/actions'
 import Link from 'next/link'
 import Status from '@/components/status'
+import axios from 'axios'
 
 const deleteTodo = async (id: string) => {
   'use server'
-  const headers = {
-    'Content-Type': 'application/json',
-  }
+
   const url = `http://localhost:3000/api/todos/${id}`
   try {
-    const data = await fetch(url, { method: 'DELETE', headers: headers })
+    const { data } = await axios.delete(url)
     console.log(data)
   } catch (error) {
     console.log(error)

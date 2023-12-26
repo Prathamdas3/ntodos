@@ -12,9 +12,9 @@ export async function DELETE(
       id,
     },
   })
-  console.log(id)
+
   revalidatePath('/todos')
-  return NextResponse.json('got the id')
+  return NextResponse.json({ message: 'Success' }, { status: 200 })
 }
 
 export async function PATCH(
@@ -23,12 +23,18 @@ export async function PATCH(
 ) {
   const id = params.id
 
-  const data = req.json()
+  const body = await req.json()
+  const { title, description, tags } = body
 
   await prisma.todos.update({
     where: { id },
-    data: {},
+    data: {
+      title,
+      description,
+      tags,
+    },
   })
 
-  return NextResponse.json({ data })
+  revalidatePath('/todos')
+  return NextResponse.json({ message: 'Success' }, { status: 200 })
 }
