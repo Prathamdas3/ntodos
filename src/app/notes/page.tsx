@@ -3,7 +3,7 @@ import prisma from '@/libs/db'
 import { addNote } from '@/libs/actions'
 import Link from 'next/link'
 
-export default async function Notes() {
+export default async function Page() {
   const notes = await prisma.notes.findMany()
 
   return (
@@ -27,18 +27,20 @@ export default async function Notes() {
           </button>
         </form>
       </div>
-      <div className="w-60 p-3">
+      <div className="w-60 p-3 ">
         <h2 className="font-bold text-2xl pb-2">Note List</h2>
-        {notes.map(({ id, title }) => (
-          <Link
-            href={`/details/${id}`}
-            className="flex gap-2 hover:underline rounded-md pr-8 pl-2 py-1 "
-            key={id}
-          >
-            <FileSpreadsheet />
-            <h4 className="font-medium text-lg">{title}</h4>
-          </Link>
-        ))}
+        <div className="overflow-hidden">
+          {notes.map(({ id, title }) => (
+            <Link
+              href={`/details/${id}`}
+              className="flex gap-2 hover:underline rounded-md pr-8 pl-2 py-1 cursor-pointer"
+              key={id}
+            >
+              <FileSpreadsheet />
+              <h4 className="font-medium text-lg">{title}</h4>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   )

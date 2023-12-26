@@ -1,6 +1,6 @@
 import axios from 'axios'
-import TodoSection from '@/components/todo'
-import NoteSection from '@/components/note'
+import TodoSection from '@/app/todos/page'
+import NoteSection from '@/app/notes/page'
 import PomodoroSection from '@/components/pomodoro'
 import ExtraSection from '@/components/extra'
 

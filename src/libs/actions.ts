@@ -10,5 +10,17 @@ export async function addNote(formData: FormData) {
     },
   })
 
-  revalidatePath('/note')
+  revalidatePath('/notes')
+}
+
+export async function addTodo(formData: FormData) {
+  const title = formData.get('title')
+
+  const data = await prisma.todos.create({
+    data: {
+      title: title as string,
+    },
+  })
+
+  revalidatePath('/todos')
 }

@@ -1,10 +1,7 @@
-// 'use client'
-// import React,{useState} from 'react';
-// import { Proptype } from '@/libs/types'
 import prisma from '@/libs/db'
 
 const getData = async (id: string) => {
-  const data = await prisma.notes.findUnique({
+  const data = await prisma.todos.findUnique({
     where: {
       id,
     },
