@@ -4,10 +4,10 @@ import NoteSection from '@/app/notes/page'
 import PomodoroSection from '@/components/pomodoro'
 import ExtraSection from '@/components/extra'
 
-// const getData = async () => {
-//   const { data } = await axios.get('http://localhost:3000/api/todos')
-//   return data
-// }
+const getData = async () => {
+  const { data } = await axios.get('http://localhost:3000/api/todos')
+  return data
+}
 
 export default async function Home() {
   return (
