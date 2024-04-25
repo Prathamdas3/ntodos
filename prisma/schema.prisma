@@ -11,7 +11,7 @@ datasource db {
 }
 
 model notes {
-  id          String   @id @default(uuid()) @map("_id") @db.ObjectId
+  id          String   @id @default(uuid()) @map("_id")
   title       String   @unique
   description String?
   tags        String?
