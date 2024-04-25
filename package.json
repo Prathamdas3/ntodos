@@ -1,5 +1,5 @@
 {
-  "name": "taskpro",
+  "name": "ntodo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@nivo/calendar": "^0.85.1",
-    "@prisma/client": "^5.7.1",
-    "axios": "^1.6.2",
-    "lucide-react": "^0.302.0",
-    "next": "14.0.4",
+    "@prisma/client": "^5.13.0",
+    "axios": "^1.6.8",
+    "lucide-react": "^0.373.0",
+    "next": "14.2.3",
     "next-pwa": "^5.6.0",
     "nivo": "^0.31.0",
     "react": "^18",
@@ -23,12 +23,12 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.4",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9",
+    "eslint-config-next": "14.2.3",
     "postcss": "^8",
-    "prisma": "^5.7.1",
-    "tailwindcss": "^3.3.0",
+    "prisma": "^5.13.0",
+    "tailwindcss": "^3.4.3",
     "typescript": "^5"
   }
 }
