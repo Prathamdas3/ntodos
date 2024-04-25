@@ -10,7 +10,6 @@ const deleteTodo = async (id: string) => {
   const url = `http://localhost:3000/api/todos/${id}`
   try {
     const { data } = await axios.delete(url)
-    console.log(data)
   } catch (error) {
     console.log(error)
   }
@@ -21,7 +20,7 @@ export default async function Todos() {
   const sortedTodos = todos.sort(
     (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
   )
-  const data = [sortedTodos[0], sortedTodos[1], sortedTodos[2]]
+  const data = sortedTodos.slice(0, 3)
 
   return (
     <section className="flex  gap-5">
@@ -45,22 +44,25 @@ export default async function Todos() {
         </form>
       </div>
       <div className="w-60  flex flex-col items-center">
-        <h2 className="font-bold text-2xl pb-2">Note List</h2>
+        <h2 className="font-bold text-2xl pb-2">Todos List</h2>
 
         {data.map(({ id, title }) => (
           <div
             className="flex justify-around  rounded-md pr-8 pl-2 py-1 space-x-2"
             key={id}
           >
-            <Status id={id} deleteTodo={deleteTodo} />
+            <Status id={id} func={deleteTodo} />
             <Link href={`/todos/${id}`}>
               <h4 className="font-medium text-lg hover:underline">{title}</h4>
             </Link>
           </div>
         ))}
-        <button className="border-[1px] border-neutral-500 px-4 py-2 rounded-lg mt-5">
-          See More
-        </button>
+
+        {data.length != 0 ? (
+          <button className="border-[1px] border-neutral-500 px-4 py-2 rounded-lg mt-5">
+            <Link href="/todos">See More</Link>
+          </button>
+        ) : undefined}
       </div>
     </section>
   )

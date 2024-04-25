@@ -20,40 +20,43 @@ export default async function Page() {
   const todos = await prisma.todos.findMany()
 
   return (
-    <section className="flex   gap-5">
+    <section className="container mx-auto p-5 border-x-[1px] border-neutral-700 min-h-screen">
       <div className="p-3">
-        <h2 className="font-bold text-2xl p-3"> Add todo </h2>
+        <h2 className="font-bold text-2xl p-3 text-center"> Add todo </h2>
 
-        <form action={addTodo} className="flex flex-col gap-4 mt-2 p-3">
+        <form action={addTodo} className="flex gap-4 justify-center mt-5">
           <input
             type="text"
             name="title"
             placeholder="write todos here "
-            className="rounded-lg bg-neutral-800 p-2 "
+            className="rounded-lg bg-neutral-800 p-3 w-96"
           />
 
           <button
             type="submit"
-            className="bg-neutral-700 p-2 rounded-2xl font-bold text-2xl"
+            className="bg-neutral-700  rounded-lg font-semibold text-xl p-3"
           >
             Add
           </button>
         </form>
       </div>
-      <div className="w-60 p-3">
-        <h2 className="font-bold text-2xl pb-2">Note List</h2>
-
-        {todos.map(({ id, title }) => (
-          <div
-            className="flex justify-around  rounded-md pr-8 pl-2 py-1 "
-            key={id}
-          >
-            <Status id={id} deleteTodo={deleteTodo} />
-            <Link href={`/todos/${id}`}>
-              <h4 className="font-medium text-lg hover:underline">{title}</h4>
-            </Link>
-          </div>
-        ))}
+      <div className="mt-4 ">
+        <h2 className="font-bold text-2xl pb-2 text-center border-b-[1px] border-neutral-500">
+          Note List
+        </h2>
+        <div className="overflow-hidden grid grid-cols-7 gap-4 p-5 justify-center items-center">
+          {todos.map(({ id, title }) => (
+            <div
+              className="flex gap-2 items-center justify-center hover:underline rounded-md pr-8 pl-2 py-1 cursor-pointer"
+              key={id}
+            >
+              <Status id={id} deleteTodo={deleteTodo} />
+              <Link href={`/todos/${id}`}>
+                <h4 className="font-medium text-lg hover:underline">{title}</h4>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
