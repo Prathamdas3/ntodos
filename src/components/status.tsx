@@ -1,5 +1,5 @@
 'use client'
 
-export default function Status({ deleteTodo, id }: any) {
-  return <input type="checkbox" onChange={() => deleteTodo(id)} />
+export default function Status({ func, id }: any) {
+  return <input type="checkbox" onChange={() => func(id)} />
 }

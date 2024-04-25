@@ -6,6 +6,7 @@ import ExtraSection from '@/components/extra'
 import Charts from '@/components/chart'
 import { setData } from './constants'
 import Todos from '@/components/todos'
+import Notes from '@/components/notes'
 
 const getData = async () => {
   const { data } = await axios.get('http://localhost:3000/api/todos')
@@ -26,7 +27,7 @@ export default async function Home() {
           <ExtraSection />
         </div>
         <div className="glass p-8 col-span-2">
-          <NoteSection />
+          <Notes />
         </div>
       </div>
       <div>
