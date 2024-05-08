@@ -11,7 +11,7 @@ export async function DELETE(
   const id = params.id
   await TodoModel.findByIdAndDelete(id)
 
-  revalidatePath('/todos')
+  revalidatePath('/')
   return NextResponse.json({ message: 'Success' }, { status: 200 })
 }
 
@@ -22,14 +22,12 @@ export async function PATCH(
   await dbConnect()
   const id = params.id
 
-  const { title, description, tags } = await req.json()
+  const { title } = await req.json()
 
   await TodoModel.findByIdAndUpdate(id, {
     title,
-    description,
-    tags,
   })
 
-  revalidatePath('/todos')
+  revalidatePath('/')
   return NextResponse.json({ message: 'Success' }, { status: 200 })
 }
