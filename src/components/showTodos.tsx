@@ -14,7 +14,7 @@ export default function Todos() {
   useEffect(() => {
     ;(async function getData() {
       try {
-        const res = await axios.get(`http://localhost:3000/api/todos`)
+        const res = await axios.get(`/api/todos`)
         setData(res.data.todos)
       } catch (error: unknown) {
         console.error(error)

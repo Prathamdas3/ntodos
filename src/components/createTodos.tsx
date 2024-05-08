@@ -9,7 +9,7 @@ export default function CreateTodos() {
 
   const submitData = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/api/todos', {
+      const res = await axios.post('/api/todos', {
         title: todo,
       })
       setTodo('')
