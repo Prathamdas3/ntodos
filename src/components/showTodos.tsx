@@ -2,20 +2,22 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { TodoType } from '@/libs/mongoose.model'
-import { Trash2, Pen, X } from 'lucide-react'
-import { deleteTodo } from '@/libs/api'
-import { useApiContextProvider } from '@/libs/context'
+import { Trash2, Pen, X, Check } from 'lucide-react'
+import { deleteTodo, updateTodo } from '@/libs/api'
 
 export default function Todos() {
   const [data, setData] = useState<TodoType[]>([])
+  const [edit, setEdit] = useState<boolean>(false)
   const [todo, setTodo] = useState<string>('')
-  const { edit, setEdit } = useApiContextProvider()
-
+  const ids = []
   useEffect(() => {
     ;(async function getData() {
       try {
-        const res = await axios.get(`/api/todos`)
+        const res = await axios.get(`http://localhost:3000/api/todos`)
         setData(res.data.todos)
+        data.map((e: TodoType) => {
+          ids.push(e._id)
+        })
       } catch (error: unknown) {
         console.error(error)
       }
@@ -35,17 +37,19 @@ export default function Todos() {
               } hover:text-neutral-400 text-neutral-600`}
               key={e._id}
             >
-              {edit ? (
-                <input
-                  value={todo}
-                  key={e._id}
-                  placeholder="Update your todo"
-                  onChange={(e) => setTodo(e.target.value)}
-                  className="bg-transparent outline-none w-48  border-b-[1px] border-neutral-600 "
-                />
-              ) : (
-                <h4 className="font-medium text-lg ">{e.title}</h4>
-              )}
+              <h4 className={`font-medium text-lg ${edit ? 'hidden' : ''}`}>
+                {e.title}
+              </h4>
+
+              <input
+                value={todo}
+                key={e._id}
+                placeholder="Update your todo"
+                onChange={(e) => setTodo(e.target.value)}
+                className={`${
+                  edit ? '' : 'hidden'
+                } bg-transparent outline-none w-48  border-b-[1px] border-neutral-600 `}
+              />
               <div className="flex justify-around items-center gap-2 ">
                 {edit ? (
                   <X
@@ -60,7 +64,13 @@ export default function Todos() {
                     onClick={() => setEdit(!edit)}
                   />
                 )}
-                {edit ? undefined : (
+                {edit ? (
+                  <Check
+                    size={18}
+                    className="cursor-pointer"
+                    onClick={() => updateTodo(e._id, todo)}
+                  />
+                ) : (
                   <Trash2
                     size={16}
                     className="cursor-pointer "
