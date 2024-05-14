@@ -13,7 +13,7 @@ export default function Todos() {
   useEffect(() => {
     ;(async function getData() {
       try {
-        const res = await axios.get(`http://localhost:3000/api/todos`)
+        const res = await axios.get(`/api/todos`)
         setData(res.data.todos)
         data.map((e: TodoType) => {
           ids.push(e._id)
@@ -23,6 +23,15 @@ export default function Todos() {
       }
     })()
   }, [])
+
+  const editData = async (id: string, data: string) => {
+    try {
+      // await updateTodo(id, data)
+      // setEdit(false)
+    } catch (error: unknown) {
+      console.error(error)
+    }
+  }
 
   return (
     <section className="flex flex-col sm:flex-row gap-5">
@@ -51,7 +60,7 @@ export default function Todos() {
                 } bg-transparent outline-none w-48  border-b-[1px] border-neutral-600 `}
               />
               <div className="flex justify-around items-center gap-2 ">
-                {edit ? (
+                {/* {edit ? (
                   <X
                     size={18}
                     className="cursor-pointer"
@@ -63,12 +72,12 @@ export default function Todos() {
                     className="cursor-pointer "
                     onClick={() => setEdit(!edit)}
                   />
-                )}
+                )} */}
                 {edit ? (
                   <Check
                     size={18}
                     className="cursor-pointer"
-                    onClick={() => updateTodo(e._id, todo)}
+                    onClick={() => editData(e._id, todo)}
                   />
                 ) : (
                   <Trash2

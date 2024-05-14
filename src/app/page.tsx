@@ -7,14 +7,14 @@ export default async function Home() {
     <main className="min-h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col sm:flex-row sm:gap-x-3">
         <div className="flex flex-col sm:gap-2">
-          <div className="glass sm:col-span-2 sm:p-10 p-12 ">
+          <div className="demo sm:col-span-2 sm:p-10 p-12 ">
             <CTS />
           </div>
-          <div className="glass sm:p-20 p-10 border-0">
+          <div className="demo sm:p-20 p-10 border-0">
             <PomodoroSection />
           </div>
         </div>
-        <div className="p-20 glass">
+        <div className="p-20 demo">
           <STS />
         </div>
       </div>
